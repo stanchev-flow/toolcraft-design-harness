@@ -250,6 +250,60 @@
     border-radius: var(--radius-sm); background: var(--primary); color: var(--primary-foreground); }
   .pv-btn.ghost { background: var(--muted); color: var(--foreground); }
   .pv-generic { font-family: var(--font-mono); font-size: 0.875rem; color: var(--muted-foreground); }
+  .pv-btngroup { display: flex; border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: hidden; }
+  .pv-btngroup span { flex: 1; text-align: center; font-size: 0.625rem; padding: 0.25rem 0;
+    border-left: 1px solid var(--hairline); color: var(--muted-foreground); }
+  .pv-btngroup span:first-child { border-left: 0; }
+  .pv-btngroup span.on { background: var(--muted); color: var(--foreground); }
+  .pv-addon { display: flex; align-items: center; padding: 0 0.4375rem; font-size: 0.625rem;
+    font-family: var(--font-mono); color: var(--muted-foreground); background: var(--muted);
+    border: 1px solid var(--hairline); border-right: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); }
+  .pv-labelrow { display: flex; align-items: center; gap: 0.3125rem; font-size: 0.6875rem; color: var(--muted-foreground); }
+  .pv-labelrow .help { width: 12px; height: 12px; border-radius: 999px; font-size: 0.5rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: color-mix(in oklab, var(--foreground) 12%, transparent); }
+  .pv-popover { position: relative; padding-top: 8px; }
+  .pv-popover > i { position: absolute; top: 0; left: 50%; width: 5px; height: 5px; border-radius: 999px;
+    background: var(--accent); transform: translateX(-50%); }
+  .pv-popover .bubble { display: flex; flex-direction: column; gap: 1px; margin-top: 4px;
+    background: color-mix(in oklab, var(--popover) 98%, transparent);
+    border: 1px solid var(--hairline); border-radius: var(--radius-md);
+    padding: 0.375rem 0.5rem; box-shadow: 0 6px 16px rgb(0 0 0 / 0.3); }
+  .pv-popover .bubble b { font-size: 0.625rem; }
+  .pv-popover .bubble span { font-size: 0.5625rem; color: var(--muted-foreground); }
+  .pv-tooltip { position: relative; font-size: 0.625rem; padding: 0.25rem 0.5rem;
+    background: var(--foreground); color: var(--background); border-radius: var(--radius-sm); }
+  .pv-tooltip i { position: absolute; left: 50%; bottom: -3px; width: 6px; height: 6px;
+    background: var(--foreground); transform: translateX(-50%) rotate(45deg); }
+  .pv-toggle { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.6875rem; border-radius: var(--radius-sm); color: var(--muted-foreground);
+    border: 1px solid transparent; }
+  .pv-toggle.on { background: var(--muted); color: var(--foreground); border-color: var(--hairline); }
+  .pv-fade { display: flex; flex-direction: column; gap: 4px; max-width: 110px;
+    mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 35%, transparent 100%); }
+  .pv-fade span { height: 5px; border-radius: 999px; background: color-mix(in oklab, var(--foreground) 22%, transparent); }
+  .pv-editval { position: relative; font-family: var(--font-mono); font-size: 0.875rem; display: inline-flex;
+    align-items: baseline; gap: 2px; border-bottom: 1px dashed color-mix(in oklab, var(--foreground) 40%, transparent);
+    padding: 0 2px 1px; }
+  .pv-editval span { font-size: 0.625rem; color: var(--muted-foreground); }
+  .pv-editval i { width: 1px; height: 0.875rem; background: var(--accent); align-self: center;
+    animation: pv-caret 1.1s steps(1) infinite; }
+  @keyframes pv-caret { 50% { opacity: 0; } }
+  .pv-loader { max-width: 110px; height: 3px; border-radius: 999px; position: relative; overflow: hidden;
+    background: color-mix(in oklab, var(--foreground) 14%, transparent); }
+  .pv-loader i { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: var(--primary);
+    animation: pv-sweep 1.4s ease-in-out infinite; }
+  @keyframes pv-sweep {
+    0% { left: 0%; right: 65%; } 25% { left: 0%; right: 0%; }
+    50% { left: 65%; right: 0%; } 75% { left: 0%; right: 0%; } 100% { left: 0%; right: 65%; }
+  }
+  .pv-portal { position: relative; width: 64px; height: 44px; }
+  .pv-portal i { position: absolute; width: 44px; height: 30px; border-radius: var(--radius-sm);
+    border: 1px solid var(--hairline); background: color-mix(in oklab, var(--popover) 92%, transparent); }
+  .pv-portal i:nth-child(1) { left: 0; top: 14px; }
+  .pv-portal i:nth-child(2) { left: 10px; top: 7px; }
+  .pv-portal i:nth-child(3) { left: 20px; top: 0; border-color: color-mix(in oklab, var(--accent) 60%, transparent); }
 
   /* ---------- files ---------- */
   .files-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 0.75rem; align-items: start; }
@@ -533,14 +587,26 @@ const CONTROLS = [
 ];
 
 const PRIMITIVES = [
-  ["button","Variants + size tokens, loading sweep animation"], ["button-group","Grouped segmented buttons"],
-  ["input","Text field"], ["input-group","Input with addons"], ["textarea","Multi-line field"],
-  ["label","Form label"], ["field","Label + control + help composition"],
-  ["checkbox",""], ["switch",""], ["slider","Radix-style slider core"],
-  ["select","Popover select core"], ["separator",""], ["popover",""], ["tooltip","Label-help tooltips"],
-  ["toggle",""], ["toggle-group",""], ["scroll-fade","Edge-fade for scrollable panels"],
-  ["editable-slider-value-label","Click-to-type slider value"], ["animated-loader",""],
-  ["portal-layer-context","Stacking/portal management"],
+  { n: "button", d: "Variants + per-size radius tokens; loading state runs the sweep animation.", pv: "btn" },
+  { n: "button-group", d: "Attached button row sharing borders and end radii.", pv: "btngroup" },
+  { n: "input", d: "Text field on the 4%-foreground inset surface.", pv: "input" },
+  { n: "input-group", d: "Input with leading/trailing addons.", pv: "inputgrp" },
+  { n: "textarea", d: "Multi-line field.", pv: "textarea" },
+  { n: "label", d: "Form label; help tooltip renders only when description adds meaning.", pv: "label" },
+  { n: "field", d: "Label + control + help composition with the 5px field gap.", pv: "field" },
+  { n: "checkbox", d: "Boolean checkbox core.", pv: "check" },
+  { n: "switch", d: "Toggle core used by schema switch rows.", pv: "switch" },
+  { n: "slider", d: "Radix-style slider core the schema slider builds on.", pv: "slider" },
+  { n: "select", d: "Popover select core.", pv: "select" },
+  { n: "separator", d: "Hairline divider at foreground-mix opacity.", pv: "sep" },
+  { n: "popover", d: "Floating surface at popover-mix 98% with hairline border.", pv: "popover" },
+  { n: "tooltip", d: "Label-help tooltips.", pv: "tooltip" },
+  { n: "toggle", d: "Pressed-state icon button.", pv: "toggle" },
+  { n: "toggle-group", d: "Exclusive or multi toggle set.", pv: "togglegrp" },
+  { n: "scroll-fade", d: "Edge-fade mask for scrollable panels.", pv: "fade" },
+  { n: "editable-slider-value-label", d: "Click a slider value to type it.", pv: "editval" },
+  { n: "animated-loader", d: "Indeterminate loader; suppressed while controls mount.", pv: "loader" },
+  { n: "portal-layer-context", d: "Stacking and portal layer management.", pv: "portal" },
 ];
 
 const COMPOSITES = [
@@ -597,6 +663,21 @@ const PV = {
   drop: '<div class="pv" style="border:1.5px dashed color-mix(in oklab,var(--foreground) 30%,transparent);border-radius:var(--radius-md);padding:0.5rem;text-align:center;font-size:0.625rem;color:var(--muted-foreground)">Drop image ↴</div>',
   coll: '<div class="pv" style="display:flex;flex-direction:column;gap:3px;font-size:0.625rem"><span class="pv-input" style="padding:2px 6px;display:flex;justify-content:space-between"><span>Layer 01</span><span style="color:var(--destructive)">✕</span></span><span class="pv-input" style="padding:2px 6px;display:flex;justify-content:space-between"><span>Layer 02</span><span style="color:var(--destructive)">✕</span></span><span style="color:var(--link)">+ Add item</span></div>',
   actions: '<div class="pv-btnrow"><span class="pv-btn ghost">Copy</span><span class="pv-btn">Export PNG</span></div>',
+  btn: '<div class="pv-btnrow"><span class="pv-btn">Generate</span><span class="pv-btn ghost">Cancel</span></div>',
+  btngroup: '<div class="pv pv-btngroup"><span>−</span><span class="on">Auto</span><span>+</span></div>',
+  inputgrp: '<div class="pv" style="display:flex"><span class="pv-addon">W</span><span class="pv-input" style="flex:1;border-radius:0 var(--radius-md) var(--radius-md) 0;border-left:0">1920</span></div>',
+  textarea: '<div class="pv pv-input" style="line-height:1rem;color:var(--muted-foreground)">Prompt for the visual<br>idea, not the plumbing…</div>',
+  label: '<div class="pv-labelrow"><span>Letter spacing</span><span class="help">?</span></div>',
+  field: '<div class="pv" style="display:flex;flex-direction:column;gap:0.3125rem"><span class="pv-labelrow" style="font-size:0.625rem"><span>Density</span></span><span class="pv-input" style="padding:2px 8px">0.85</span></div>',
+  sep: '<div class="pv" style="display:flex;align-items:center;gap:0.5rem;color:var(--muted-foreground);font-size:0.625rem"><span>Fill</span><span style="flex:1;height:1px;background:var(--hairline)"></span><span>Stroke</span></div>',
+  popover: '<div class="pv-popover"><i></i><div class="bubble"><b>Blend mode</b><span>Multiply · Screen · Overlay</span></div></div>',
+  tooltip: '<div class="pv-tooltip">Reset to default<i></i></div>',
+  toggle: '<span class="pv-toggle on" style="font-weight:700">B</span>',
+  togglegrp: '<div style="display:flex;gap:3px"><span class="pv-toggle on">◧</span><span class="pv-toggle">◨</span><span class="pv-toggle">◫</span></div>',
+  fade: '<div class="pv pv-fade"><span></span><span></span><span></span><span></span><span></span></div>',
+  editval: '<div class="pv-editval">64<i></i><span>%</span></div>',
+  loader: '<div class="pv pv-loader"><i></i></div>',
+  portal: '<div class="pv-portal"><i></i><i></i><i></i></div>',
 };
 
 /* ============ render: tokens ============ */
@@ -632,21 +713,24 @@ function renderTokens() {
 }
 
 /* ============ render: components ============ */
-function renderComponents() {
-  const host = document.getElementById("componentSections");
-  let html = `<div class="section-head"><h2>Schema controls</h2><span class="count">${CONTROLS.length}</span>
-    <span class="src">templates/ui/components/controls · declared via app-schema.ts</span></div>
-    <div class="comp-grid">`;
-  html += CONTROLS.map(c => `<div class="comp">
+function compCards(items) {
+  return `<div class="comp-grid">` + items.map(c => `<div class="comp">
     <div class="comp-preview">${PV[c.pv] || `<span class="pv-generic">${esc(c.n)}</span>`}</div>
     <div class="comp-body">
       <div class="comp-name"><span class="mono">${esc(c.n)}</span></div>
       <div class="comp-desc">${esc(c.d)}</div>
       ${c.parts ? `<div class="comp-parts">${c.parts.map(p=>`<span class="chip">.${esc(p)}</span>`).join("")}</div>` : ""}
-    </div></div>`).join("");
-  html += "</div>";
+    </div></div>`).join("") + "</div>";
+}
+function renderComponents() {
+  const host = document.getElementById("componentSections");
+  let html = `<div class="section-head"><h2>Schema controls</h2><span class="count">${CONTROLS.length}</span>
+    <span class="src">templates/ui/components/controls · declared via app-schema.ts</span></div>`;
+  html += compCards(CONTROLS);
+  html += `<div class="section-head"><h2>Primitives</h2><span class="count">${PRIMITIVES.length}</span>
+    <span class="src">templates/ui/components/primitives</span></div>`;
+  html += compCards(PRIMITIVES);
   const groups = [
-    ["Primitives", PRIMITIVES, "templates/ui/components/primitives"],
     ["Composites", COMPOSITES, "templates/ui/components/composites · shadcn-derived"],
     ["Panel system", PANEL, "templates/ui/components/panel"],
     ["Runtime surfaces", RUNTIME, "templates/runtime/react · never hand-composed by apps"],
