@@ -181,7 +181,7 @@
     background: var(--card); display: flex; flex-direction: column; overflow: hidden;
   }
   .comp-preview {
-    height: 4.25rem; flex: none; display: flex; align-items: center; justify-content: center;
+    min-height: 4.25rem; flex: none; display: flex; align-items: center; justify-content: center;
     border-bottom: 1px solid var(--hairline-soft);
     background:
       radial-gradient(color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px) 0 0 / 12px 12px,
@@ -304,6 +304,135 @@
   .pv-portal i:nth-child(1) { left: 0; top: 14px; }
   .pv-portal i:nth-child(2) { left: 10px; top: 7px; }
   .pv-portal i:nth-child(3) { left: 20px; top: 0; border-color: color-mix(in oklab, var(--accent) 60%, transparent); }
+
+  /* composite previews */
+  .pvx-acc .row { display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.625rem; font-weight: 600; padding: 0.1875rem 0.375rem;
+    border: 1px solid var(--hairline); border-radius: var(--radius-sm); }
+  .pvx-acc .row i { font-style: normal; color: var(--muted-foreground); font-size: 0.5625rem; }
+  .pvx-acc .body { height: 10px; margin: 2px 4px; border-left: 1px solid var(--hairline); }
+  .pvx-acc .row + .row { margin-top: 2px; }
+  .pvx-alert { display: flex; gap: 0.4375rem; align-items: flex-start;
+    border: 1px solid color-mix(in oklab, var(--attention) 45%, transparent);
+    background: color-mix(in oklab, var(--attention) 10%, transparent);
+    border-radius: var(--radius-md); padding: 0.375rem 0.5rem; }
+  .pvx-alert i { width: 7px; height: 7px; border-radius: 999px; background: var(--attention); flex: none; margin-top: 2px; }
+  .pvx-alert b { display: block; font-size: 0.625rem; }
+  .pvx-alert span { font-size: 0.5625rem; color: var(--muted-foreground); }
+  .pvx-modal { background: color-mix(in oklab, var(--popover) 98%, transparent);
+    border: 1px solid var(--hairline); border-radius: var(--radius-md);
+    padding: 0.4375rem 0.5rem; box-shadow: 0 8px 20px rgb(0 0 0 / 0.35); }
+  .pvx-modal b { font-size: 0.625rem; display: flex; justify-content: space-between; align-items: center; }
+  .pvx-modal .x { font-style: normal; color: var(--muted-foreground); font-size: 0.5625rem; }
+  .pvx-modal .line { display: block; height: 4px; border-radius: 999px; margin: 5px 0;
+    background: color-mix(in oklab, var(--foreground) 14%, transparent); }
+  .pvx-modal .foot { display: flex; gap: 0.25rem; justify-content: flex-end; margin-top: 0.375rem; }
+  .pvx-modal .pv-btn { flex: none; padding: 0.1875rem 0.5rem; font-size: 0.5625rem; }
+  .pvx-aspect { width: 96px; aspect-ratio: 16/9; border: 1px dashed color-mix(in oklab, var(--foreground) 35%, transparent);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 0.625rem; color: var(--muted-foreground); }
+  .pvx-avatars { display: flex; }
+  .pvx-avatars span { width: 22px; height: 22px; border-radius: 999px; background: var(--secondary);
+    color: var(--foreground); font-size: 0.5625rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--card); margin-left: -6px; }
+  .pvx-avatars span:first-child { margin-left: 0; background: var(--primary); color: var(--primary-foreground); }
+  .pvx-avatars span:last-child { background: var(--muted); color: var(--muted-foreground); }
+  .pvx-badge { font-size: 0.5625rem; font-weight: 600; padding: 0.125rem 0.375rem; border-radius: 999px;
+    border: 1px solid var(--hairline); color: var(--muted-foreground); }
+  .pvx-badge.solid { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+  .pvx-badge.warn { background: color-mix(in oklab, var(--attention) 18%, transparent);
+    color: var(--attention); border-color: transparent; }
+  .pvx-crumb { display: flex; gap: 0.3125rem; align-items: center; font-size: 0.625rem; color: var(--muted-foreground); }
+  .pvx-crumb i { font-style: normal; font-size: 0.5625rem; }
+  .pvx-crumb b { color: var(--foreground); font-weight: 600; }
+  .pvx-card { border: 1px solid var(--hairline); border-radius: var(--radius-md); padding: 0.4375rem 0.5rem; }
+  .pvx-card b { font-size: 0.625rem; display: block; margin-bottom: 0.3125rem; }
+  .pvx-card span { display: block; height: 4px; border-radius: 999px; margin-top: 3px;
+    background: color-mix(in oklab, var(--foreground) 14%, transparent); }
+  .pvx-menu { background: color-mix(in oklab, var(--popover) 98%, transparent);
+    border: 1px solid var(--hairline); border-radius: var(--radius-md); padding: 2px; font-size: 0.625rem; }
+  .pvx-menu .search { padding: 0.1875rem 0.375rem; color: var(--muted-foreground);
+    border-bottom: 1px solid var(--hairline-soft); display: flex; justify-content: space-between; gap: 0.5rem; }
+  .pvx-menu .item { display: flex; justify-content: space-between; gap: 0.5rem;
+    padding: 0.1875rem 0.375rem; border-radius: var(--radius-sm); }
+  .pvx-menu .item.on { background: color-mix(in oklab, var(--foreground) 8%, transparent); }
+  .pvx-menu kbd { font-family: var(--font-mono); font-size: 0.5625rem; color: var(--muted-foreground); }
+  .pvx-menu hr { border: 0; border-top: 1px solid var(--hairline-soft); margin: 2px 4px; }
+  .pvx-dd { display: flex; flex-direction: column; gap: 3px; width: 100%; max-width: 130px; }
+  .pvx-dd .trigger { align-self: flex-start; font-size: 0.625rem; padding: 0.1875rem 0.4375rem;
+    border: 1px solid var(--hairline); border-radius: var(--radius-sm); }
+  .pvx-empty { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .pvx-empty i { font-style: normal; font-size: 0.9375rem; color: var(--muted-foreground); }
+  .pvx-empty span { font-size: 0.5625rem; color: var(--muted-foreground); }
+  .pvx-empty b { font-size: 0.5625rem; color: var(--link); font-weight: 500; }
+  .pvx-hover { position: relative; font-size: 0.625rem; }
+  .pvx-hover u { text-decoration-style: dotted; color: var(--link); }
+  .pvx-hover .card { margin-top: 4px; background: color-mix(in oklab, var(--popover) 98%, transparent);
+    border: 1px solid var(--hairline); border-radius: var(--radius-md); padding: 0.3125rem 0.4375rem;
+    box-shadow: 0 6px 14px rgb(0 0 0 / 0.3); }
+  .pvx-hover .card b { display: block; font-size: 0.5625rem; }
+  .pvx-hover .card span { font-size: 0.5625rem; color: var(--muted-foreground); }
+  .pvx-bar, .pvx-nav, .pvx-tabs { display: flex; gap: 0.125rem; font-size: 0.625rem; }
+  .pvx-bar span { padding: 0.1875rem 0.4375rem; border-radius: var(--radius-sm); color: var(--muted-foreground); }
+  .pvx-bar span.on { background: var(--muted); color: var(--foreground); }
+  .pvx-nav { gap: 0.75rem; }
+  .pvx-nav span { color: var(--muted-foreground); padding-bottom: 3px; }
+  .pvx-nav span.on { color: var(--foreground); font-weight: 600;
+    box-shadow: 0 2px 0 0 var(--primary); }
+  .pvx-tabs { gap: 2px; padding: 2px; background: var(--muted); border-radius: var(--radius-md); }
+  .pvx-tabs span { padding: 0.125rem 0.4375rem; border-radius: var(--radius-sm); color: var(--muted-foreground); }
+  .pvx-tabs span.on { background: var(--card); color: var(--foreground); box-shadow: 0 0 0 1px var(--hairline-soft); }
+  body.light .pvx-tabs span.on { background: var(--background); }
+  .pvx-pages { display: flex; gap: 2px; font-size: 0.625rem; font-variant-numeric: tabular-nums; }
+  .pvx-pages span { min-width: 16px; text-align: center; padding: 0.125rem 0.1875rem;
+    border-radius: var(--radius-sm); color: var(--muted-foreground); }
+  .pvx-pages span.on { background: var(--primary); color: var(--primary-foreground); }
+  .pvx-radios { display: flex; flex-direction: column; gap: 0.3125rem; font-size: 0.625rem; }
+  .pvx-radios label { display: flex; align-items: center; gap: 0.375rem; }
+  .pvx-radios i { width: 11px; height: 11px; border-radius: 999px; flex: none;
+    border: 1px solid color-mix(in oklab, var(--foreground) 40%, transparent); }
+  .pvx-radios i.on { border-color: var(--primary); box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 8px var(--primary); }
+  .pvx-split { display: flex; align-items: stretch; gap: 2px; height: 38px; }
+  .pvx-split div { flex: 1; border-radius: var(--radius-sm);
+    background: color-mix(in oklab, var(--foreground) 8%, transparent); }
+  .pvx-split i { font-style: normal; align-self: center; color: var(--muted-foreground); font-size: 0.625rem; cursor: col-resize; }
+  .pvx-sheet { position: relative; height: 42px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; }
+  .pvx-sheet .page { position: absolute; inset: 0; background: color-mix(in oklab, var(--foreground) 4%, transparent); }
+  .pvx-sheet .panel { position: absolute; top: 0; bottom: 0; right: 0; width: 42%;
+    background: color-mix(in oklab, var(--popover) 98%, transparent);
+    border-left: 1px solid var(--hairline); padding: 5px; box-shadow: -4px 0 10px rgb(0 0 0 / 0.25); }
+  .pvx-sheet .panel span { display: block; height: 4px; border-radius: 999px; margin-top: 3px;
+    background: color-mix(in oklab, var(--foreground) 16%, transparent); }
+  .pvx-sidebar { display: flex; gap: 3px; height: 40px; }
+  .pvx-sidebar .rail { width: 34%; border-radius: var(--radius-sm); padding: 4px;
+    background: color-mix(in oklab, var(--foreground) 6%, transparent);
+    display: flex; flex-direction: column; gap: 3px; }
+  .pvx-sidebar .rail span { height: 6px; border-radius: 999px;
+    background: color-mix(in oklab, var(--foreground) 16%, transparent); }
+  .pvx-sidebar .rail span.on { background: var(--primary); }
+  .pvx-sidebar .main { flex: 1; border-radius: var(--radius-sm);
+    border: 1px solid var(--hairline-soft); }
+  .pvx-sidebar.skel .rail span { background: color-mix(in oklab, var(--foreground) 10%, transparent);
+    border: 1px dashed color-mix(in oklab, var(--foreground) 25%, transparent); height: 7px; }
+  .pvx-toasts { position: relative; width: 100%; max-width: 140px; height: 40px; }
+  .pvx-toasts .t { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 0.375rem;
+    background: color-mix(in oklab, var(--popover) 98%, transparent); border: 1px solid var(--hairline);
+    border-radius: var(--radius-md); padding: 0.3125rem 0.4375rem; font-size: 0.5625rem;
+    box-shadow: 0 6px 14px rgb(0 0 0 / 0.3); }
+  .pvx-toasts .t.back { bottom: 8px; left: 6px; right: 6px; height: 14px; opacity: 0.5; z-index: 0; }
+  .pvx-toasts .t i { font-style: normal; color: #4ade80; font-size: 0.625rem; }
+  .pvx-spinner { width: 18px; height: 18px; border-radius: 999px;
+    border: 2px solid color-mix(in oklab, var(--foreground) 15%, transparent);
+    border-top-color: var(--primary); animation: pvx-spin 0.9s linear infinite; }
+  @keyframes pvx-spin { to { transform: rotate(360deg); } }
+  .pvx-table { border: 1px solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden;
+    font-size: 0.5625rem; font-variant-numeric: tabular-nums; }
+  .pvx-table .h, .pvx-table .r { display: flex; justify-content: space-between; padding: 0.1875rem 0.375rem; }
+  .pvx-table .h { color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.04em;
+    font-size: 0.5rem; border-bottom: 1px solid var(--hairline-soft); }
+  .pvx-table .r + .r { border-top: 1px solid var(--hairline-soft); }
+  .pvx-table .r span:first-child { font-family: var(--font-mono); }
 
   /* ---------- files ---------- */
   .files-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 0.75rem; align-items: start; }
@@ -610,11 +739,34 @@ const PRIMITIVES = [
 ];
 
 const COMPOSITES = [
-  ["accordion",""],["alert",""],["alert-dialog",""],["aspect-ratio",""],["avatar",""],["badge",""],
-  ["breadcrumb",""],["card",""],["combobox",""],["command","Command palette"],["context-menu",""],
-  ["dialog",""],["dropdown-menu",""],["empty","Empty states"],["hover-card",""],["menubar",""],
-  ["navigation-menu",""],["pagination",""],["progress",""],["radio-group",""],["resizable","Split panes"],
-  ["sheet",""],["sidebar",""],["sidebar-structural",""],["sonner","Toasts"],["spinner",""],["table",""],["tabs",""],
+  { n: "accordion", d: "Disclosure rows.", pv: "accordion" },
+  { n: "alert", d: "Inline callout.", pv: "alert" },
+  { n: "alert-dialog", d: "Blocking confirm dialog.", pv: "alertdialog" },
+  { n: "aspect-ratio", d: "Fixed-ratio media frame.", pv: "aspect" },
+  { n: "avatar", d: "", pv: "avatar" },
+  { n: "badge", d: "Status pills.", pv: "badge" },
+  { n: "breadcrumb", d: "", pv: "breadcrumb" },
+  { n: "card", d: "", pv: "card" },
+  { n: "combobox", d: "Searchable select.", pv: "combobox" },
+  { n: "command", d: "Command palette.", pv: "command" },
+  { n: "context-menu", d: "Right-click menu.", pv: "contextmenu" },
+  { n: "dialog", d: "Modal window.", pv: "dialog" },
+  { n: "dropdown-menu", d: "", pv: "dropdown" },
+  { n: "empty", d: "Empty states with a next action.", pv: "empty" },
+  { n: "hover-card", d: "Preview card on hover.", pv: "hovercard" },
+  { n: "menubar", d: "App menu row.", pv: "menubar" },
+  { n: "navigation-menu", d: "", pv: "navmenu" },
+  { n: "pagination", d: "", pv: "pagination" },
+  { n: "progress", d: "Determinate progress.", pv: "progress" },
+  { n: "radio-group", d: "", pv: "radio" },
+  { n: "resizable", d: "Draggable split panes.", pv: "resizable" },
+  { n: "sheet", d: "Slide-in side panel.", pv: "sheet" },
+  { n: "sidebar", d: "Nav rail + content.", pv: "sidebar" },
+  { n: "sidebar-structural", d: "Sidebar layout skeleton.", pv: "sidebarstruct" },
+  { n: "sonner", d: "Toast notifications.", pv: "sonner" },
+  { n: "spinner", d: "", pv: "spinner" },
+  { n: "table", d: "", pv: "table" },
+  { n: "tabs", d: "", pv: "tabs" },
 ];
 
 const PANEL = [
@@ -678,6 +830,34 @@ const PV = {
   editval: '<div class="pv-editval">64<i></i><span>%</span></div>',
   loader: '<div class="pv pv-loader"><i></i></div>',
   portal: '<div class="pv-portal"><i></i><i></i><i></i></div>',
+  accordion: '<div class="pv pvx-acc"><div class="row"><span>Canvas</span><i>⌄</i></div><div class="body"></div><div class="row"><span>Export</span><i style="transform:rotate(-90deg)">⌄</i></div></div>',
+  alert: '<div class="pv pvx-alert"><i></i><div><b>Heads up</b><span>Render scale is capped at 2.</span></div></div>',
+  alertdialog: '<div class="pv pvx-modal"><b>Delete layer?</b><div class="foot"><span class="pv-btn ghost">Cancel</span><span class="pv-btn" style="background:var(--destructive)">Delete</span></div></div>',
+  aspect: '<div class="pvx-aspect">16:9</div>',
+  avatar: '<div class="pvx-avatars"><span>PP</span><span>SS</span><span>+3</span></div>',
+  badge: '<div style="display:flex;gap:0.25rem"><span class="pvx-badge solid">New</span><span class="pvx-badge">Beta</span><span class="pvx-badge warn">Draft</span></div>',
+  breadcrumb: '<div class="pvx-crumb"><span>Home</span><i>›</i><span>Library</span><i>›</i><b>Button</b></div>',
+  card: '<div class="pv pvx-card"><b>Export settings</b><span></span><span style="width:70%"></span></div>',
+  combobox: '<div class="pv pvx-menu"><div class="search">Search fonts…</div><div class="item on">Inter</div><div class="item">Instrument Sans</div></div>',
+  command: '<div class="pv pvx-menu"><div class="search">Type a command… <kbd>⌘K</kbd></div><div class="item on">Export PNG <kbd>⇧E</kbd></div><div class="item">Reset controls</div></div>',
+  contextmenu: '<div class="pv pvx-menu"><div class="item">Copy <kbd>⌘C</kbd></div><div class="item">Paste <kbd>⌘V</kbd></div><hr><div class="item" style="color:var(--destructive)">Delete</div></div>',
+  dialog: '<div class="pv pvx-modal"><b>Import settings <i class="x">✕</i></b><span class="line"></span><div class="foot"><span class="pv-btn">Apply</span></div></div>',
+  dropdown: '<div class="pvx-dd"><span class="trigger">Actions ▾</span><div class="pvx-menu"><div class="item on">Duplicate</div><div class="item">Rename</div></div></div>',
+  empty: '<div class="pvx-empty"><i>◌</i><span>No assets yet</span><b>Upload image</b></div>',
+  hovercard: '<div class="pvx-hover"><u>@pixel-point</u><div class="card"><b>Pixel Point</b><span>Design for dev tools</span></div></div>',
+  menubar: '<div class="pvx-bar"><span class="on">File</span><span>Edit</span><span>View</span><span>Help</span></div>',
+  navmenu: '<div class="pvx-nav"><span class="on">Tokens</span><span>Components</span><span>Docs</span></div>',
+  pagination: '<div class="pvx-pages"><span>‹</span><span>1</span><span class="on">2</span><span>3</span><span>…</span><span>8</span><span>›</span></div>',
+  progress: '<div class="pv pv-loader" style="height:5px"><i style="animation:none;left:0;right:38%"></i></div>',
+  radio: '<div class="pvx-radios"><label><i class="on"></i>Playback timeline</label><label><i></i>Keyframes</label></div>',
+  resizable: '<div class="pv pvx-split"><div></div><i>⋮</i><div style="flex:1.6"></div></div>',
+  sheet: '<div class="pv pvx-sheet"><div class="page"></div><div class="panel"><span></span><span style="width:60%"></span></div></div>',
+  sidebar: '<div class="pv pvx-sidebar"><div class="rail"><span class="on"></span><span></span><span></span></div><div class="main"></div></div>',
+  sidebarstruct: '<div class="pv pvx-sidebar skel"><div class="rail"><span></span><span></span><span></span></div><div class="main"></div></div>',
+  sonner: '<div class="pvx-toasts"><div class="t back"></div><div class="t"><i>✓</i>Settings exported</div></div>',
+  spinner: '<div class="pvx-spinner"></div>',
+  table: '<div class="pv pvx-table"><div class="h"><span>Class</span><span>Count</span></div><div class="r"><span>button</span><span>12</span></div><div class="r"><span>container</span><span>9</span></div></div>',
+  tabs: '<div class="pvx-tabs"><span class="on">Styles</span><span>Settings</span><span>Export</span></div>',
 };
 
 /* ============ render: tokens ============ */
@@ -730,8 +910,10 @@ function renderComponents() {
   html += `<div class="section-head"><h2>Primitives</h2><span class="count">${PRIMITIVES.length}</span>
     <span class="src">templates/ui/components/primitives</span></div>`;
   html += compCards(PRIMITIVES);
+  html += `<div class="section-head"><h2>Composites</h2><span class="count">${COMPOSITES.length}</span>
+    <span class="src">templates/ui/components/composites · shadcn-derived</span></div>`;
+  html += compCards(COMPOSITES);
   const groups = [
-    ["Composites", COMPOSITES, "templates/ui/components/composites · shadcn-derived"],
     ["Panel system", PANEL, "templates/ui/components/panel"],
     ["Runtime surfaces", RUNTIME, "templates/runtime/react · never hand-composed by apps"],
   ];
